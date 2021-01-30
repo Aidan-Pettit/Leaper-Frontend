@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
@@ -9,7 +9,7 @@ import WelcomeScreen from './screens/WelcomeScreen'
 import TextScreen from './screens/TextScreen'
 import LoginScreen from './screens/LoginScreen'
 import SignupScreen from './screens/SignupScreen';
-import SettingsScreen from './screens/SettingsScreen'
+import HomeScreen from './screens/HomeScreen';
 
 const Stack = createStackNavigator()
 
@@ -20,21 +20,22 @@ export default function App() {
   return (
     <React.Fragment>
 
-    {/* <NavigationContainer>
-        <Stack.Navigator initialRouteName="WelcomeScreen">
-          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
-          <Stack.Screen name="TextScreen" component={TextScreen}/>
-          <Stack.Screen name="LoginScreen" component={LoginScreen}/>
-          <Stack.Screen name="SignupScreen" component={SignupScreen}/>
-        </Stack.Navigator>
-    </NavigationContainer> */}
-
     <NavigationContainer>
+        <Stack.Navigator initialRouteName="WelcomeScreen">
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} options={{title: 'Leaper', headerStyle: {backgroundColor: 'lightgreen'}}}/>
+          <Stack.Screen name="TextScreen" component={TextScreen}  options={{title: 'Leaper'}}/>
+          <Stack.Screen name="LoginScreen" component={LoginScreen}  options={{title: 'Login'}}/>
+          <Stack.Screen name="SignupScreen" component={SignupScreen}  options={{title: 'Signup'}}/>
+          <Stack.Screen name="HomeScreen" component={HomeScreen}  options={{title: 'Home'}}/>
+        </Stack.Navigator>
+    </NavigationContainer>
+
+    {/* <NavigationContainer>
         <Drawer.Navigator initialRouteName="WelcomeScreen">
           <Drawer.Screen name="WelcomeScreen" component={WelcomeScreen}/>
           <Drawer.Screen name="Settings" component={SettingsScreen}/>
         </Drawer.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */}
 
 
     <StatusBar style="auto" />

@@ -4,6 +4,7 @@ import { View, StyleSheet, Image, Button, TouchableOpacity } from 'react-native'
 import Screen from '../components/Screen'
 import LeaperButton from '../components/LeaperButton'
 import { Ionicons } from '@expo/vector-icons'
+import Post from '../components/Post'
 
 function WelcomeScreen({navigation}) {
   return (
@@ -13,15 +14,15 @@ function WelcomeScreen({navigation}) {
       <LeaperButton title="Login" onPress={() => navigation.navigate("LoginScreen")}/>
       <LeaperButton title="Signup" onPress={() => navigation.navigate("SignupScreen")}/>
 
-      <Button title="Got to text screen" onPress={() => navigation.navigate("TextScreen")}/>
+      {/* <Button title="Got to text screen" onPress={() => navigation.navigate("TextScreen")}/> */}
 
-      <Button title="Open Drawer" onPress={() => navigation.openDrawer()}/>
+      {/* <Button title="Open Drawer" onPress={() => navigation.openDrawer()}/> */}
 
-      <TouchableOpacity onPress={() => navigation.openDrawer()}>
+      {/* <TouchableOpacity onPress={() => navigation.openDrawer()}>
         <View style={styles.icon}>
           <Ionicons name="settings-outline" size={60} />
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       
     </Screen>
   );
@@ -29,9 +30,11 @@ function WelcomeScreen({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
+      flex: 0.5,
+      justifyContent: 'space-around',
       alignItems: 'center',
-      backgroundColor: 'skyblue'
+      backgroundColor: 'skyblue',
+
   },
 
   logo: {
