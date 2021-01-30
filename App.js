@@ -1,13 +1,45 @@
+import 'react-native-gesture-handler';
+import { NavigationContainer, NavigationHelpersContext } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import WelcomeScreen from './screens/WelcomeScreen'
+import TextScreen from './screens/TextScreen'
+import LoginScreen from './screens/LoginScreen'
+import SignupScreen from './screens/SignupScreen';
+import SettingsScreen from './screens/SettingsScreen'
+
+const Stack = createStackNavigator()
+
+const Drawer = createDrawerNavigator()
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <React.Fragment>
+
+    {/* <NavigationContainer>
+        <Stack.Navigator initialRouteName="WelcomeScreen">
+          <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+          <Stack.Screen name="TextScreen" component={TextScreen}/>
+          <Stack.Screen name="LoginScreen" component={LoginScreen}/>
+          <Stack.Screen name="SignupScreen" component={SignupScreen}/>
+        </Stack.Navigator>
+    </NavigationContainer> */}
+
+    <NavigationContainer>
+        <Drawer.Navigator initialRouteName="WelcomeScreen">
+          <Drawer.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+          <Drawer.Screen name="Settings" component={SettingsScreen}/>
+        </Drawer.Navigator>
+    </NavigationContainer>
+
+
+    <StatusBar style="auto" />
+
+    </React.Fragment>
   );
 }
 
@@ -15,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
