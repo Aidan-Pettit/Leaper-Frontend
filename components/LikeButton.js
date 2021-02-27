@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 function LikeButton(props) {
@@ -9,7 +8,7 @@ function LikeButton(props) {
   return (
     <TouchableOpacity style={styles.touchable} onPress={() => setIsLiked(!isLiked)}>
         <View style={styles.container}>
-            <AntDesign name={isLiked ? 'like1' : 'like2'} size={40} color="yellow"/>
+            <AntDesign name={isLiked ? 'like1' : 'like2'} size={40} color="#f0e94f"/>
         </View>
     </TouchableOpacity>
   );

@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import LeaperInput from '../components/LeaperInput';
 import SubmitButton from '../components/SubmitButton';
 import ErrorMessage from '../components/ErrorMessage';
+import mongoose from 'mongoose'
 
 const schema = Yup.object().shape({
   username: Yup.string().required().min(3).max(20).label('Username'),
@@ -13,6 +14,33 @@ const schema = Yup.object().shape({
 })
 
 function SignupScreen({navigation}) {
+
+  // async function createUser() {
+  //   const mongoose = require('mongoose')
+
+  //   mongoose.connect('mongodb://localhost/Native-Leaper')
+  //   .then(() => console.log('Connected to MongoDB...'))
+  //   .catch(err => console.error('Failed to connect to MongoDB...', err))
+
+  //   const userSchema = new mongoose.Schema({
+  //     username: String,
+  //     password: String,
+  //     email: String,
+  //     signupDate: { type: Date, default: Date.now() }
+  //   })
+
+  //   const User = mongoose.model('User', userSchema)
+
+  //   const user = new User({
+  //     username: useState('username'),
+  //     password: useState('password'),
+  //     email: useState('email')
+  //   })
+
+  //   const result = user.save()
+  //   console.log(result)
+  // }
+
   return (
     <View style={styles.container}>
 

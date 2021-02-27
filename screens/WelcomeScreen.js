@@ -1,12 +1,18 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, Button, TouchableOpacity } from 'react-native';
 import Screen from '../components/Screen'
 import LeaperButton from '../components/LeaperButton'
 import { Ionicons } from '@expo/vector-icons'
 import Post from '../components/Post'
+import CourseList from '../components/CourseList';
+import printAxiosData from '../services/printAxiosData'
 
 function WelcomeScreen({navigation}) {
+  useEffect(() => {
+    printAxiosData()
+  }, [])
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require('../assets/leaper-icon.jpg')}/>
@@ -23,6 +29,8 @@ function WelcomeScreen({navigation}) {
           <Ionicons name="settings-outline" size={60} />
         </View>
       </TouchableOpacity> */}
+
+      <CourseList/>
       
     </Screen>
   );
