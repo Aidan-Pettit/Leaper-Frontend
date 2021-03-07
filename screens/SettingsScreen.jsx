@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Switch } from 'react-native';
-import Screen from '../components/Screen.js';
+import Screen from '../components/Screen.jsx';
 import { Ionicons } from '@expo/vector-icons';
 import SettingsItem from '../components/SettingsItem';
 

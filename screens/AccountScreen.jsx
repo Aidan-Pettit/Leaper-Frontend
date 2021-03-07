@@ -22,8 +22,8 @@ function AccountScreen({navigation}) {
       
         <FlatList 
         data={users.data} 
-        renderItem={({item}) => <Button title={item.name} onPress={() => navigation.navigate('AccountViewScreen', item)}/>}
-        keyExtractor={user => user.id.toString()}
+        renderItem={({item}) => <Button title={item.username} onPress={() => navigation.navigate('AccountViewScreen', item)}/>}
+        keyExtractor={user => user._id.toString()}
         />
         
     </View>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getUsers = async () => {
-    const result = await axios.get('https://jsonplaceholder.typicode.com/users')
+    const result = await axios.get('https://leaper-backend.herokuapp.com/api/users')
     return result
 }
 

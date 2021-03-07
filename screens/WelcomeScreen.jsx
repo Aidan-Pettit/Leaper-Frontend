@@ -7,10 +7,11 @@ import { Ionicons } from '@expo/vector-icons'
 import Post from '../components/Post'
 import CourseList from '../components/CourseList';
 import printAxiosData from '../services/printAxiosData'
+import getUsers from '../services/getUsers'
 
 function WelcomeScreen({navigation}) {
   useEffect(() => {
-    printAxiosData()
+    
   }, [])
 
   return (
@@ -38,7 +39,7 @@ function WelcomeScreen({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 0.5,
+      flex: 1,
       justifyContent: 'space-around',
       alignItems: 'center',
       backgroundColor: 'skyblue',

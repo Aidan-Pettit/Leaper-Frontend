@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import LikeButton from '../components/LikeButton'
-import LoveButton from '../components/LoveButton'
+import LikeButton from './LikeButton'
+import LoveButton from './LoveButton'
 
 function Post({imageURL}) {
   const [likes, setLikes] = useState(0)
@@ -15,15 +15,16 @@ function Post({imageURL}) {
           <Image style={styles.image} source={{uri: imageURL}}/>
         </View>
 
-        <View>
-          <TouchableOpacity style={styles.buttonsContainer} onPress={() => setLikes(likes + 1)}>
+        <View style={styles.buttonsContainer}>
+          <TouchableOpacity onPress={() => setLikes(likes + 1)}>
             <LikeButton/>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setLoves(loves + 1)}>
+            <LoveButton />
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.buttonsContainer} onPress={() => setLoves(loves + 1)}>
-          <LoveButton />
-        </TouchableOpacity>
 
         <Text>Number of likes: {likes}</Text>
         <Text>Number of loves: {loves}</Text>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   },
 
   buttonsContainer: {
-      width: '70%'
+    flexDirection: 'row'
   }
 });
 

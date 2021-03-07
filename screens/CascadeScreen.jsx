@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
+import userService from '../services/axios'
 
 function CascadeScreen(props) {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        setData([1, 2, 3])
+      loadUsers()
     }, [])
+    
+    const loadUsers = async () => {
+      const users = await userService.getUsers()
+      setData(users.data)
+      console.log(data)
+    }
 
   return (
     <View style={styles.container}>
         <Text>Cascade Screen</Text>
         <FlatList 
         data={data}
-        keyExtractor={item => item.toString()}
-        renderItem={({item}) => <Text>{item}</Text>}
+        keyExtractor={item => item._id.toString()}
+        renderItem={({item}) => <Text>{item.username}</Text>}
         />
     </View>
   );
