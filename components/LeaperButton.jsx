@@ -17,7 +17,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'limegreen',
     borderColor: 'darkgreen',
     borderWidth: 2,
-    borderRadius: 25
+    borderRadius: 25,
+    shadowColor: 'gray',
+    shadowOffset: {width: 5, height: 5},
+    shadowOpacity: 0.5
   }
 });
 

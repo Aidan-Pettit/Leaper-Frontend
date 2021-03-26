@@ -1,34 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native';
 import userService from '../services/axios'
+import AuthContext from '../auth/AuthContext'
+import AccountPicture from '../components/AccountPicture'
+import friendService from '../services/friendService'
 
 function CascadeScreen(props) {
-    const [data, setData] = useState([])
+  const [friendRequests, setFriendRequests] = useState([])
 
-    useEffect(() => {
-      loadUsers()
-    }, [])
-    
-    const loadUsers = async () => {
-      const users = await userService.getUsers()
-      setData(users.data)
-      console.log(data)
-    }
+  const {user} = useContext(AuthContext)
+
+  useEffect(() => {
+    // setFriendRequests(user.friendRequests)
+  }, [])
+
+  const acceptFriendRequest = async friendUserID => {
+    const result = await friendService.acceptFriendRequest(user._id, friendUserID)
+    console.log(result)
+  }
+
 
   return (
+    <>
     <View style={styles.container}>
-        <Text>Cascade Screen</Text>
-        <FlatList 
-        data={data}
-        keyExtractor={item => item._id.toString()}
-        renderItem={({item}) => <Text>{item.username}</Text>}
-        />
+        {/* <Text style={styles.title}>Cascade Screen</Text> */}
+        
+        {user && <Text style={styles.title}>Current User:</Text>}
+        {user && <Text style={styles.text}>{user.username}</Text>}
+        {user && <AccountPicture accountPictureURL={user.accountPicture} size={150}/>}
     </View>
+
+    <View>
+      {/* <FlatList 
+      data={friendRequests}
+      keyExtractor={item.toString}
+      
+      /> */}
+    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center', 
+    padding: 20
+  },
+
+  title: {
+    fontSize: 50
+  },
+
+  text: {
+    fontSize: 50,
+    color: 'green'
+  }
 });
 
 export default CascadeScreen;

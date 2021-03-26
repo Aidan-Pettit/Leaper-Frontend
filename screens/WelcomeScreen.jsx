@@ -5,9 +5,8 @@ import Screen from '../components/Screen'
 import LeaperButton from '../components/LeaperButton'
 import { Ionicons } from '@expo/vector-icons'
 import Post from '../components/Post'
-import CourseList from '../components/CourseList';
-import printAxiosData from '../services/printAxiosData'
 import getUsers from '../services/getUsers'
+import AccountTab from '../components/AccountTab'
 
 function WelcomeScreen({navigation}) {
   useEffect(() => {
@@ -16,12 +15,12 @@ function WelcomeScreen({navigation}) {
 
   return (
     <Screen style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/leaper-icon.jpg')}/>
+      <Image style={styles.logo} source={require('../assets/images/leaper-icon.jpg')}/>
 
       <LeaperButton title="Login" onPress={() => navigation.navigate("LoginScreen")}/>
       <LeaperButton title="Signup" onPress={() => navigation.navigate("SignupScreen")}/>
 
-      {/* <Button title="Got to text screen" onPress={() => navigation.navigate("TextScreen")}/> */}
+      {/* <Button title="Go to text screen" onPress={() => navigation.navigate("TextScreen")}/> */}
 
       {/* <Button title="Open Drawer" onPress={() => navigation.openDrawer()}/> */}
 
@@ -30,8 +29,6 @@ function WelcomeScreen({navigation}) {
           <Ionicons name="settings-outline" size={60} />
         </View>
       </TouchableOpacity> */}
-
-      <CourseList/>
       
     </Screen>
   );
@@ -39,10 +36,9 @@ function WelcomeScreen({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
+      flex: 0.5,
       justifyContent: 'space-around',
-      alignItems: 'center',
-      backgroundColor: 'skyblue',
+      alignItems: 'center'
 
   },
 

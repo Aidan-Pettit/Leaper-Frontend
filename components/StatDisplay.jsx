@@ -23,7 +23,10 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       borderColor: 'green',
       borderWidth: 2,
-      borderRadius: 20
+      borderRadius: 20,
+      shadowColor: 'gray',
+      shadowOffset: {width: 5, height: 5},
+      shadowOpacity: 0.5
   }
 });
 

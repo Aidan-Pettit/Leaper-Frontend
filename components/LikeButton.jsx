@@ -16,7 +16,7 @@ function LikeButton(props) {
 
 const styles = StyleSheet.create({
     touchable: {
-        width: 70
+        width: 50
       }
 });
 

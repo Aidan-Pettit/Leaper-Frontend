@@ -1,37 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, Text, FlatList, Image } from 'react-native';
+import AuthContext from '../auth/AuthContext'
 import Post from '../components/Post'
 import LikeButton from '../components/LikeButton'
 import axios from '../services/axios'
+import Talk from '../components/Talk'
+import talkService from '../services/talkService'
+import feedService from '../services/feedService'
 
 function FeedScreen(props) {
-  const [photos, setPhotos] = useState([])
+  const [talks, setTalks] = useState([])
 
-  const loadPhotos = async () => {
-    const response = await axios.getPhotos()
-    setPhotos(response)
+  const {user} = useContext(AuthContext)
+
+  const loadFeed = async () => {
+    console.log(user)
+    const response = await feedService.getTalkFeed(user._id)
+    console.log(response)
+    setTalks(response)
   }
 
   useEffect(() => {
-    loadPhotos()
+    loadFeed()
   }, [])
 
   return (
     <View style={styles.container}>
-        
-        <FlatList 
-        data={photos.data}
-        renderItem={({item}) => <Post imageURL={item.url}/>}
-        keyExtractor={photo => photo.id.toString()}
-        />
-
+      <FlatList 
+      data={talks}
+      keyExtractor={talk => talk._id.toString()}
+      renderItem={({item}) => <Talk title={item.title} body={item.body} id={item._id} likes={item.likedUsers} loves={item.lovedUsers} privacyLevel={item.privacyLevel} currentUser={user}/>}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'darkturquoise'
+    backgroundColor: 'pink'
   },
 
   image: {

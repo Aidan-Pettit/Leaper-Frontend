@@ -1,11 +1,11 @@
-import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import LeaperInput from '../components/LeaperInput';
 import SubmitButton from '../components/SubmitButton';
 import ErrorMessage from '../components/ErrorMessage';
-import mongoose from 'mongoose'
+import userService from '../services/userService';
 
 const schema = Yup.object().shape({
   username: Yup.string().required().min(3).max(20).label('Username'),
@@ -14,39 +14,26 @@ const schema = Yup.object().shape({
 })
 
 function SignupScreen({navigation}) {
+  const [isAnimating, setIsAnimating] = useState(false)
 
-  // async function createUser() {
-  //   const mongoose = require('mongoose')
-
-  //   mongoose.connect('mongodb://localhost/Native-Leaper')
-  //   .then(() => console.log('Connected to MongoDB...'))
-  //   .catch(err => console.error('Failed to connect to MongoDB...', err))
-
-  //   const userSchema = new mongoose.Schema({
-  //     username: String,
-  //     password: String,
-  //     email: String,
-  //     signupDate: { type: Date, default: Date.now() }
-  //   })
-
-  //   const User = mongoose.model('User', userSchema)
-
-  //   const user = new User({
-  //     username: useState('username'),
-  //     password: useState('password'),
-  //     email: useState('email')
-  //   })
-
-  //   const result = user.save()
-  //   console.log(result)
-  // }
+  const handleSubmit = async userInfo => {
+    try {
+      setIsAnimating(true)
+      const result = await userService.postUser(userInfo)
+      console.log(result)
+      navigation.navigate("HomeScreen")
+      setIsAnimating(false)
+    } catch (error) {
+      console.log('Signup failed...', error)
+    }
+  }
 
   return (
     <View style={styles.container}>
 
-      <Image style={styles.logo} source={require('../assets/leaper-icon.jpg')}/>
+      <Image style={styles.logo} source={require('../assets/images/leaper-icon.jpg')}/>
 
-      <Formik initialValues={{username: '', password: '', email: ''}} onSubmit={values => console.log(values)} validationSchema={schema}>
+      <Formik initialValues={{username: '', password: '', email: ''}} onSubmit={values => handleSubmit(values)} validationSchema={schema}>
         {({handleChange, handleSubmit, errors}) => (
         <React.Fragment>
 
@@ -58,8 +45,11 @@ function SignupScreen({navigation}) {
 
           <LeaperInput placeholder="Email" keyboardType="email-address" onChangeText={handleChange('email')}/>
           <ErrorMessage error={errors.email}/>
-
-          <SubmitButton title="Signup" onPress={handleSubmit}/>
+          
+          <View style={{width: '100%', alignItems: 'center', margin: 10}}>
+            <SubmitButton title="Signup" onPress={handleSubmit}/>
+            <ActivityIndicator style={{padding: 20}} animating={isAnimating} size="large"/>
+          </View>
           
         </React.Fragment>
         )}
